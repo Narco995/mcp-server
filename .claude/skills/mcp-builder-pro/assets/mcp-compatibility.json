@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "targets": [
+    {
+      "id": "catalog-local-example",
+      "client": "Python MCP SDK ClientSession",
+      "clientVersion": "1.30.0",
+      "revision": "2025-11-25",
+      "sdk": "mcp",
+      "sdkVersion": "1.30.0",
+      "runtime": "Python 3.12",
+      "transport": "stdio",
+      "auth": "none; synthetic local fixture only",
+      "extensions": [],
+      "status": "unknown",
+      "evidenceIds": [],
+      "notes": "Illustrative target; populate status from a run, not from this template."
+    }
+  ]
+}

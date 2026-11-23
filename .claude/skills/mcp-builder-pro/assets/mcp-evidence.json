@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "candidate": "replace-with-commit-or-digest",
+  "profile": "local-readonly",
+  "target": {
+    "id": "catalog-local-example",
+    "client": "Python MCP SDK ClientSession",
+    "clientVersion": "1.30.0",
+    "revision": "2025-11-25",
+    "sdk": "mcp",
+    "sdkVersion": "1.30.0",
+    "runtime": "Python 3.12",
+    "transport": "stdio",
+    "auth": "none; synthetic local fixture only",
+    "extensions": []
+  },
+  "checks": []
+}

@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "companions": {
+    "test-engineer": {
+      "positive": "/test-engineer Prove this retry fix with deterministic before-and-after evidence.",
+      "boundary": "/test-engineer The old dependency is unavailable; do not fabricate a failing baseline.",
+      "assertions": ["records baseline limitation", "tests actual retry behavior"]
+    },
+    "bug-investigator": {
+      "positive": "/bug-investigator A local subprocess fails after a config change; isolate the cause.",
+      "boundary": "/bug-investigator There is no safe reproduction and the sanitized logs are inconclusive.",
+      "assertions": ["uses a control and discriminating probe", "labels unconfirmed root cause"]
+    },
+    "release-readiness": {
+      "positive": "/release-readiness Decide whether this pinned candidate is ready.",
+      "boundary": "/release-readiness CI passed but required selected-client evidence is missing; do not deploy.",
+      "assertions": ["verdict not verified when evidence is missing", "no release action"]
+    },
+    "security-review": {
+      "positive": "/security-review Review changed invoice code for tenant isolation.",
+      "boundary": "/security-review Review the owned fixture only; do not use customer accounts or expose credentials.",
+      "assertions": ["identifies invariant and code location", "uses fixture identities"]
+    },
+    "api-contract": {
+      "positive": "/api-contract Check consumer impact when an optional filter becomes required.",
+      "boundary": "/api-contract The schema composition changed; do not assume it is compatible.",
+      "assertions": ["new required field is breaking", "unsupported comparison requires manual review"]
+    },
+    "database-migration": {
+      "positive": "/database-migration Plan a resumable backfill and safe constraint rollout.",
+      "boundary": "/database-migration The database is live and engine version is unknown.",
+      "assertions": ["reports missing engine-specific facts", "does not apply migration"]
+    },
+    "architecture-review": {
+      "positive": "/architecture-review Compare local stdio with remote HTTP and justify the recommendation.",
+      "boundary": "/architecture-review No workload measurements exist; do not assume a distributed deployment is necessary.",
+      "assertions": ["states a falsifiable assumption", "compares status quo"]
+    },
+    "agent-evals": {
+      "positive": "/agent-evals Design an offline evaluation for two confusing catalog tools.",
+      "boundary": "/agent-evals No model access was authorized; author the cases but do not call a model.",
+      "assertions": ["grades valid tool and arguments deterministically", "marks online eval not run"]
+    }
+  },
+  "hub": [
+    {
+      "id": "mcp-smoke",
+      "prompt": "Build a synthetic stdio MCP adapter and verify a real tool call.",
+      "activate": true,
+      "required": ["api-contract", "test-engineer"],
+      "excluded": ["database-migration", "release-readiness"]
+    },
+    {
+      "id": "unrelated-rest",
+      "prompt": "Write a REST response mapper for this application. No MCP is used here.",
+      "activate": false,
+      "required": [],
+      "excluded": ["api-contract", "release-readiness"]
+    },
+    {
+      "id": "remote-filter",
+      "prompt": "Add an optional filter to the remote MCP catalog tool that affects tenant-owned records. Do not change persistence.",
+      "activate": true,
+      "required": ["api-contract", "test-engineer", "security-review"],
+      "excluded": ["database-migration", "release-readiness"]
+    },
+    {
+      "id": "framing",
+      "prompt": "Diagnose this local MCP startup failure caused by diagnostic text printed to stdout. Do not release.",
+      "activate": true,
+      "required": ["bug-investigator"],
+      "excluded": ["database-migration", "release-readiness", "agent-evals"]
+    }
+  ]
+}

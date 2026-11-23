@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "tools": [
+    {
+      "name": "get_catalog_item",
+      "description": "Return a catalog item by exact ID. Use search_catalog for free-text search.",
+      "action": "read",
+      "requiredScopes": ["catalog:read"],
+      "inputSchema": {
+        "type": "object",
+        "properties": {"item_id": {"type": "string", "minLength": 1, "maxLength": 32}},
+        "required": ["item_id"],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {"id": {"type": "string"}, "label": {"type": "string"}, "category": {"type": "string"}},
+        "required": ["id", "label", "category"],
+        "additionalProperties": false
+      },
+      "semantics": {"ordering": null, "pagination": null, "errors": ["NOT_FOUND"], "retry": "read-only"}
+    }
+  ],
+  "resources": [],
+  "prompts": []
+}
